@@ -13,25 +13,35 @@
 .show-modal-btn:hover {
 	background-color: rgba(0, 0, 0, .8);
 }
-.modal {
-	display: none;
+.overlay {
 	position: fixed;
 	top: 0;
+	right: 0;
+	bottom: 0;
 	left: 0;
+	z-index: 2;
+	background-color: rgba(0, 0, 0, .5);
 	width: 100%;
 	height: 100%;
-	overflow-y: auto;
+}
+.overlay__show, .modal__show {
+	display: block;
+}
+.overlay__hide, .modal__hide {
+	display: none;
+}
+.show-modal-animation {
 	animation: fade-in .3s;
 }
+.hide-modal-animation {
+	animation: fade-out .3s;
+}
 .modal__popup {
-	margin: 32% auto;
+	margin: 33% auto;
 	border: 1px solid rgba(0, 0, 0, .5);
 	background-color: rgb(255, 255, 255);
 	padding: 1.8rem;
 	width: 100%;
-}
-.modal:not(:focus) {
-	background-color: rgba(0, 0, 0, .5);
 }
 .modal__close-btn-container {
 	display: flex;
@@ -40,6 +50,7 @@
 .modal__close-btn {
 	cursor: pointer;
 	font-size: 1.3rem;
+	user-select: none;
 }
 .modal__header {
 	font-size: 1.5rem;
@@ -54,7 +65,7 @@
 }
 .okey-btn {
 	margin-right: .7rem;
-	outline: none;
+	outline-color: rgba(0, 0, 0, .1);
 	border: 0;
 	background-color: rgb(46, 205, 115);
 	padding: .5rem 1rem;
@@ -64,7 +75,7 @@
 }
 .cancel-btn {
 	margin-right: .7rem;
-	outline: none;
+	outline-color: rgba(0, 0, 0, .1);
 	border: 0;
 	background-color: rgb(231, 79, 60);
 	padding: .5rem 1rem;

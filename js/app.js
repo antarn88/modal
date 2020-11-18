@@ -1,37 +1,50 @@
+"use strict";
+
 const showModalBtn = document.querySelector(".show-modal-btn");
-const modal = document.querySelector(".modal");
+const overlay = document.querySelector(".overlay");
 const modalPopup = document.querySelector(".modal__popup");
 const modalCloseBtn = document.querySelector(".modal__close-btn");
 const okeyBtn = document.querySelector(".okey-btn");
 const cancelBtn = document.querySelector(".cancel-btn");
 
 const showModal = () => {
-    modal.style.display = "block";
-    modalPopup.style.display = "block";
-}
+    overlay.classList.remove("overlay__hide");
+    modalPopup.classList.remove("modal__hide");
+    modalPopup.classList.remove("hide-modal-animation");
+    overlay.classList.remove("hide-modal-animation");
+    modalPopup.classList.add("show-modal-animation");
+    overlay.classList.add("show-modal-animation");
+    overlay.classList.add("overlay__show");
+    modalPopup.classList.add("modal__show");
+};
 
 const hideModal = () => {
-    modal.style.animation = "fade-out .3s";
-
-    setTimeout(() => {
-        modal.style.display = "none";
-        modalPopup.style.display = "none";
-        modal.style.animation = "fade-in .3s";
-    }, 250);
-}
+    overlay.classList.remove("overlay__show");
+    modalPopup.classList.remove("modal__show");
+    modalPopup.classList.remove("show-modal-animation");
+    overlay.classList.remove("show-modal-animation");
+    modalPopup.classList.add("hide-modal-animation");
+    overlay.classList.add("hide-modal-animation");
+    modalPopup.addEventListener("animationend", function () {
+        if (this.classList.contains("hide-modal-animation")) {
+            overlay.classList.add("overlay__hide");
+            modalPopup.classList.add("modal__hide");
+        }
+    });
+};
 
 showModalBtn.addEventListener("click", () => {
     showModal();
 });
 
 okeyBtn.addEventListener("click", () => {
-    console.log("OK");
     hideModal();
+    console.log(true);
 });
 
 cancelBtn.addEventListener("click", () => {
-    console.log("Cancel");
     hideModal();
+    console.log(false);
 });
 
 modalCloseBtn.addEventListener("click", () => {
@@ -39,7 +52,7 @@ modalCloseBtn.addEventListener("click", () => {
 });
 
 window.onclick = (event) => {
-    if (event.target == modal) {
+    if (event.target == overlay) {
         hideModal();
     }
 }
