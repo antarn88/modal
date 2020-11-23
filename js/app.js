@@ -8,21 +8,15 @@ const okeyBtn = document.querySelector(".okey-btn");
 const cancelBtn = document.querySelector(".cancel-btn");
 
 const showModal = () => {
-    overlay.classList.remove("overlay__hide");
-    modalPopup.classList.remove("modal__hide");
-    modalPopup.classList.remove("hide-modal-animation");
-    overlay.classList.remove("hide-modal-animation");
-    modalPopup.classList.add("show-modal-animation");
-    overlay.classList.add("show-modal-animation");
-    overlay.classList.add("overlay__show");
-    modalPopup.classList.add("modal__show");
+    overlay.classList.remove("overlay__hide", "hide-modal-animation");
+    modalPopup.classList.remove("modal__hide", "hide-modal-animation");
+    modalPopup.classList.add("show-modal-animation", "modal__show");
+    overlay.classList.add("show-modal-animation", "overlay__show");
 };
 
 const hideModal = () => {
-    overlay.classList.remove("overlay__show");
-    modalPopup.classList.remove("modal__show");
-    modalPopup.classList.remove("show-modal-animation");
-    overlay.classList.remove("show-modal-animation");
+    overlay.classList.remove("overlay__show", "show-modal-animation");
+    modalPopup.classList.remove("modal__show", "show-modal-animation");
     modalPopup.classList.add("hide-modal-animation");
     overlay.classList.add("hide-modal-animation");
     modalPopup.addEventListener("animationend", function () {
